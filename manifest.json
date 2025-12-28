@@ -1,10 +1,10 @@
 {
-    "manifest_version": 3,
-    "name": "Meeting Recorder & Summarizer",
-    "version": "1.0",
-    "description": "Records meetings and summarizes them using AI",
-  
-    "action": {
-        "default_popup": "popup.html"
-    }
+  "manifest_version": 3,
+  "name": "Meeting Recorder & Summarizer",
+  "version": "1.0",
+  "description": "Records meetings and summarizes them using AI",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html"
+  }
 }

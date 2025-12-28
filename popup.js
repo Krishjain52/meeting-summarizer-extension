@@ -1,5 +1,5 @@
-startBtn.addEventListener("click", () => {
-    chrome.tabs.create({
-        url: chrome.runtime.getURL("recorder.html")
-    });
+document.getElementById("openRecorder").addEventListener("click", () => {
+  chrome.tabs.create({
+    url: chrome.runtime.getURL("recording.html"),
+  });
 });
