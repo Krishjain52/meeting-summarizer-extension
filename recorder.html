@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meeting Recorder</title>
+</head>
+<body>
+  <h2>Recording Meeting...</h2>
+  <button id="start">Start</button>
+  <button id="stop" disabled>Stop</button>
+  <audio id="audio" controls></audio>
+
+  <script>
+    let mediaRecorder;
+    let chunks = [];
+
+    const start = document.getElementById("start");
+    const stop = document.getElementById("stop");
+    const audio = document.getElementById("audio");
+
+    start.onclick = async () => {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      chunks = [];
+
+      mediaRecorder.ondataavailable = e => chunks.push(e.data);
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: "audio/webm" });
+        audio.src = URL.createObjectURL(blob);
+      };
+
+      mediaRecorder.start();
+      start.disabled = true;
+      stop.disabled = false;
+    };
+
+    stop.onclick = () => {
+      mediaRecorder.stop();
+      start.disabled = false;
+      stop.disabled = true;
+    };
+  </script>
+</body>
+</html>
